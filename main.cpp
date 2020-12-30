@@ -355,7 +355,8 @@ void printTm(const tm *tp)
 }
 
 template <typename T>
-T calcAverage(const std::vector<T>& vec) {
+T calcAverage(const std::vector<T> &vec)
+{
     auto sum = std::accumulate(vec.cbegin(), vec.cend(), 0);
     return sum / vec.size();
 }
@@ -384,7 +385,6 @@ void analyze(std::vector<Post> &lobstersPosts, std::vector<Post> &hnPosts)
 
     std::vector<int> hnScore;
     std::vector<int> hnComments;
-
 
     for (const auto &p : post_intersection)
     {
@@ -469,17 +469,16 @@ void analyze(std::vector<Post> &lobstersPosts, std::vector<Post> &hnPosts)
 
     std::cout << "Average comments on HN: " << calcAverage(hnComments) << ", Lobsters: " << calcAverage(lobstersComments) << ".\n";
     std::cout << "Average score on HN: " << calcAverage(hnScore) << ", Lobsters: " << calcAverage(lobstersScore) << ".\n";
-
 }
 
-
-std::vector<std::string>& Arguments()
+std::vector<std::string> &Arguments()
 {
     static std::vector<std::string> arguments;
     return arguments;
 }
 
-void usage() {
+void usage()
+{
     std::cout << "Usage: " << Arguments().at(0) << " [help|test|top|new]\n";
     std::cout << Arguments().at(0) << " top: analyze top stories from HN & Lobsters.\n";
     std::cout << Arguments().at(0) << " help: this text.\n";
@@ -487,13 +486,12 @@ void usage() {
     std::cout << Arguments().at(0) << " new: get new posts instead of best.\n";
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     for (int i = 0; i < argc; ++i)
     {
         Arguments().push_back(argv[i]);
     }
-
 
 #ifndef __GNUG__
     std::cout << "Please use GCC to compile, we're using it's struct tm tm_gmtoff extension.";
@@ -508,12 +506,14 @@ int main(int argc, char* argv[])
     auto lobster = lobsters("lobste.rs", "/page/%PAGENUMBER%.json");
     auto hn = hackernews("hacker-news.firebaseio.com", "/v0/beststories.json", "/v0/item/%ID%.json");
 
-    if (Arguments().size() >= 2 && Arguments().at(1) == "help") {
+    if (Arguments().size() >= 2 && Arguments().at(1) == "help")
+    {
         usage();
         return 0;
     }
 
-    if (Arguments().size() >= 2 && Arguments().at(1) == "new") {
+    if (Arguments().size() >= 2 && Arguments().at(1) == "new")
+    {
         lobster = lobsters("lobste.rs", "/newest/page/%PAGENUMBER%.json");
         hn = hackernews("hacker-news.firebaseio.com", "/v0/newstories.json", "/v0/item/%ID%.json");
 
