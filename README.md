@@ -28,6 +28,7 @@ Binary `hn_lob_comp` should be in the same folder.
     chmod +x ./hn_lob_comp
     ./hn_lob_comp help
 
+
 Output:
 
     Which stories appear both on Lobsters and on HN, who was first?
